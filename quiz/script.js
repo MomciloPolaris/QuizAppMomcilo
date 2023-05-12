@@ -5,20 +5,21 @@ const QUIZ = document.getElementById(`quiz`);
 const INIT = document.getElementById(`init`);
 const fetchQuestions = async () => {
     const result = await fetch(`https://the-trivia-api.com/v2/questions?limit=${QUESTION_COUNT}&categories=${category}&difficulty=${difficulty}`);
-    return result.json()
+    return result.json()  //fetch funkcija koji salje zahtev ka apiju za dobijanja pitanja sa odredjenim limitom/kategorijom i tezinom, onda se koristi json metoda za parsiranje odgovora i vraćanje podataka
 }
 
 // Shuffle array reference: https://stackoverflow.com/a/2450976
 const randomizeArray = answers => {
     let currentIndex = answers.length,  randomIndex;
-    while (currentIndex !== 0) {
+    while (currentIndex !== 0) { //while petlja koja se izvrasa sve dok je cI nije jednak nuli
         randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+        currentIndex--; //generiše rI od 0 do cI, Mr vraca nasumican broj izmedju 0 i 1
         [answers[currentIndex], answers[randomIndex]] = [
             answers[randomIndex], answers[currentIndex]];
     }
     return answers;
-}
+} 
+console.log('Hello')
 
 const answerQuestion = (question, button) => {
     const answer = button.dataset.value;
